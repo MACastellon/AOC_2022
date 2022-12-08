@@ -8,5 +8,5 @@ Before running any solution you have to install all the dependencies with `npm i
 In the project directory, you can run
 
 ### `npm run {n}`
-Replace the `n` with the number of the day to get the day solution for the part 1 and 2
+Replace the `n` with the number of the day to get the day solution for the part 1 and 2 <br>
 example: `npm run 1`
