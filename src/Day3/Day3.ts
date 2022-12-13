@@ -67,7 +67,6 @@ class Day3 extends Solution {
                     result = result + ITEM_VALUES[key];
                 }
              }
-
         }
         
         return result;

@@ -6,7 +6,9 @@
     "lint": "npx eslint --fix",
     "1": "cd src/day1 && ts-node index.ts",
     "2": "cd src/day2 && ts-node index.ts",
-    "3": "cd src/day3 && ts-node index.ts"
+    "3": "cd src/day3 && ts-node index.ts",
+    "4": "cd src/day4 && ts-node index.ts"
+
   },
   "author": "Marc-André Castellon",
   "license": "MIT",

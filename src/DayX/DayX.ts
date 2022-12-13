@@ -1,5 +1,4 @@
 import Solution from '../Solution';
-import fs from 'fs';
 
 class DayX extends Solution {
 
