@@ -1,14 +1,13 @@
 import Solution from '../Solution';
-import fs from 'fs';
 
 class Day1 extends Solution {
 
     constructor() {
-        super(1)
+        super(1);
     }
 
     private _getFormatedElfCalories():Array<number> {
-        const input = fs.readFileSync('input.txt').toString().split("\r\n");
+        const input = this.getInput().split("\r\n");
 
         const elfCaloriesArray = [0];
         for(let i = 0; i < input.length; i++) {

@@ -1,7 +1,13 @@
+import fs from 'fs';
+
 export default abstract class Solution {
 
     constructor(dayNumber: number) {
         console.log(`------- Day ${dayNumber} -------`);
+    }
+
+    public getInput(): string {
+        return fs.readFileSync('input.txt').toString();
     }
 
     private partOne(): void {

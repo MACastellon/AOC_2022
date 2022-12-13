@@ -4,7 +4,7 @@ import fs from 'fs';
 class DayX extends Solution {
 
     constructor() {
-        super(0)
+        super(0);
     }
 
     solvePartOne(): string | number {

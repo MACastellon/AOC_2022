@@ -1,5 +1,4 @@
 import Solution from '../Solution';
-import fs from 'fs';
 
 interface Object {
     [key: string]: string
@@ -29,13 +28,13 @@ const ENCRYPTED_STRATEGY_GUIDE: Object  = {
 class Day2 extends Solution {
 
     constructor() {
-        super(2)
+        super(2);
     }
     
     solvePartOne(): string | number {
         let score = 0;
 
-        const input = fs.readFileSync('input.txt').toString().split("\r\n");
+        const input = this.getInput().split("\r\n");
 
         for(let i = 0; i < input.length; i++) {
             const matchPick = input[i].split(' ');
@@ -65,7 +64,7 @@ class Day2 extends Solution {
     solvePartTwo(): string | number {
         let score = 0;
 
-        const input = fs.readFileSync('input.txt').toString().split("\r\n");
+        const input = this.getInput().split("\r\n");
 
         for(let i = 0; i < input.length; i++) {
             const matchPick = input[i].split(' ');
