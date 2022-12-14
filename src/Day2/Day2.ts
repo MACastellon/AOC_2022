@@ -1,8 +1,5 @@
 import Solution from '../Solution';
-
-interface Object {
-    [key: string]: string
-}
+import { Object } from '../utils/interface';
 
 const SHAPES: Object = {
     ROCK: 'ROCK',

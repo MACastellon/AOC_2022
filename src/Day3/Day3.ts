@@ -1,8 +1,5 @@
 import Solution from '../Solution';
-
-interface Object {
-    [key: string]: number
-};
+import { Object } from '../utils/interface';
 
 const ALPHABET_LOWERCASE = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 const ALPHABET_UPPERCASE = ALPHABET_LOWERCASE.map(letter => letter.toUpperCase());
@@ -21,7 +18,7 @@ class Day3 extends Solution {
         const map: Object = {};
         for(let i = 0; i < array.length; i++) {
             if(map[array[i]] >= 1) {
-                map[array[i]] = map[array[i]] + 1
+                map[array[i]] = map[array[i]] + 1 ;
                 continue;
             }
             map[array[i]] = 1;

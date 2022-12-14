@@ -31,6 +31,19 @@ class Day4 extends Solution {
         return isFullyIncluded;
     }
 
+    private _isOverlaping(sectionOne: Array<number>, sectionTwo: Array<number>): boolean {
+        let isOverlaping = false;
+
+        for(let i = 0; i < sectionOne.length; i++) {
+            if(sectionTwo.includes(sectionOne[i])) {
+                isOverlaping = true;
+                break;
+            }
+        }
+
+        return isOverlaping
+    }
+
     solvePartOne(): string | number {
         const input = this.getInput().split("\r\n");
         let overlapingCount = 0;
@@ -44,8 +57,8 @@ class Day4 extends Solution {
                 continue;
             }
             
-            const elfOneSections = this._getAssignedSections(elfOneRange)
-            const elfTwoSections = this._getAssignedSections(elfTwoRange)
+            const elfOneSections = this._getAssignedSections(elfOneRange);
+            const elfTwoSections = this._getAssignedSections(elfTwoRange);
             
             if(this._isFullyIncluded(elfOneSections, elfTwoSections)) {
                 overlapingCount++;
@@ -61,7 +74,28 @@ class Day4 extends Solution {
     }
 
     solvePartTwo(): string | number {
-        return 'solvePartTwo'
+        const input = this.getInput().split("\r\n");
+        let overlapingCount = 0;
+
+        for(let i = 0; i < input.length; i++) {
+            const elfOneRange = input[i].split(',')[0];
+            const elfTwoRange = input[i].split(',')[1];
+
+            if(elfOneRange === elfTwoRange) {
+                overlapingCount++;
+                continue;
+            }
+            
+            const elfOneSections = this._getAssignedSections(elfOneRange);
+            const elfTwoSections = this._getAssignedSections(elfTwoRange);
+            
+            if(this._isOverlaping(elfOneSections, elfTwoSections)) {
+                overlapingCount++;
+            }
+
+        }
+
+        return overlapingCount;
     }
 
 }
