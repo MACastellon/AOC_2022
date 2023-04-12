@@ -9,7 +9,8 @@
     "3": "cd src/day3 && ts-node index.ts",
     "4": "cd src/day4 && ts-node index.ts",
     "5": "cd src/day5 && ts-node index.ts",
-    "6": "cd src/day6 && ts-node index.ts"
+    "6": "cd src/day6 && ts-node index.ts",
+    "7": "cd src/day7 && ts-node index.ts"
 
   },
   "author": "Marc-André Castellon",
