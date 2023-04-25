@@ -8,11 +8,10 @@ class Day7 extends Solution {
     }
 
     solvePartOne(): string | number {
-        const lines = [
-            '$ cd /'
-        ];
+        const lines = this.getInput().split('\r\n');
         const fs = new FileSystem();
         fs.createStructure(lines)
+        console.log(fs.calculateTotalSize(fs.currentFolder));
        return 'solvePartOne'
     }
 

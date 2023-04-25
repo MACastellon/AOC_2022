@@ -11,27 +11,15 @@ class File {
 class Folder {
     name = ''
     childrens: Array<Folder> & Array<File> = [];
-    parent: Folder | undefined = undefined
+    parent: Folder | undefined = undefined;
+    size = 0;
 
     constructor(name: string, parent?: Folder) {
         this.name = name;
         this.parent = parent
     }
 
-    addChildren(children: Folder & File) {
-        this.childrens.push(children);
-        return this;
-    }
-
-    find(name: string): Folder | undefined {
-        for(let i = 0; i < this.childrens.length; i++) {
-            if(this.childrens[i].name === name) {
-                return this.childrens[i];
-            }
-        }
-    }
 }
-
 
 export default class FileSystem {
     root;
@@ -42,24 +30,71 @@ export default class FileSystem {
         this.currentFolder = this.root;
     }
 
-    createStructure(lines: Array<string>) {
-        for(let i = 0; i < lines.length; i++) {
+    public calculateTotalSize(folder: Folder): number {
+        let total = 0;
+        
+        if(folder.size > 100000) {
+            total += folder.size;
+        }
+
+        if(folder.childrens.length === 0) {
+            return total;
+        }
+
+        return this.calculateTotalSize(folder);
+    }
+
+    public createStructure(lines: Array<string>) {
+        for(let i = 1; i < lines.length; i++) {
             const line = lines[i];
             const instructions = line.split(' ');
-            const isCommand = instructions[0] === '$';
-
-            if(isCommand) {
-                const command = instructions[1];
-
-                if(command === 'cd') {
-                    const folder = this.currentFolder.find(instructions[2]) as Folder;
-                    this.currentFolder = folder;
-                } else if (command === 'ls') {
-                    // Loop to get all the following insctructions to create Folder and Files
-                }
-            }
             
-            
+            this.executeInstructions(instructions);
         }
+
+        this.currentFolder = this.root;
+
+        return this.currentFolder;
+    }
+
+    private executeInstructions(instructions: Array<string>) {
+        const isCommand = instructions[0] === '$';
+
+        if(isCommand) {
+            const command = instructions[1];
+
+            if(command === 'cd') {
+                const goBack = instructions[2] === '..';
+                const folder = goBack ? this.currentFolder.parent : this.findInCurrentFolder(instructions[2]);
+                this.currentFolder = folder as Folder;
+            }
+        
+        } else {
+            if(instructions[0] === 'dir') {
+                const name = instructions[1];
+                this.createFolder(name);
+            } else {
+                const name = instructions[1];
+                const size = Number(instructions[0]);
+                this.createFile(name, size)
+            }
+        }
+    }
+
+    private findInCurrentFolder(name: string): Folder | File | undefined {
+        for(let i = 0; i < this.currentFolder.childrens.length; i++) {
+            if(this.currentFolder.childrens[i].name === name) {
+                return this.currentFolder.childrens[i];
+            }
+        }
+    }
+
+    private createFolder(name: string) {
+        this.currentFolder.childrens.push(new Folder(name, this.currentFolder));
+    }
+
+    private createFile(name: string, size: number) {
+        this.currentFolder.childrens.push(new File(name, size));
+        this.currentFolder.size += size;
     }
 }
